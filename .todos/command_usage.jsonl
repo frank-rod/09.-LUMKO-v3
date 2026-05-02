@@ -1,0 +1,6 @@
+{"ts":"2026-05-02T16:48:48.264729-06:00","cmd":"init","session":"ses_d3b486","ok":true,"dur_ms":47}
+{"ts":"2026-05-02T16:48:48.366152-06:00","cmd":"usage","flags":{"new-session":"true"},"session":"ses_b955ad","ok":true,"dur_ms":15}
+{"ts":"2026-05-02T16:54:56.729222-06:00","cmd":"usage","flags":{"quiet":"true"},"session":"ses_e07110","ok":true,"dur_ms":22}
+{"ts":"2026-05-02T17:01:23.134214-06:00","cmd":"usage","flags":{"quiet":"true"},"session":"ses_a7cf5a","ok":true,"dur_ms":22}
+{"ts":"2026-05-02T17:05:21.024104-06:00","cmd":"usage","flags":{"quiet":"true"},"session":"ses_dc4b38","ok":true,"dur_ms":24}
+{"ts":"2026-05-02T17:07:06.374099-06:00","cmd":"usage","flags":{"quiet":"true"},"session":"ses_4cf10e","ok":true,"dur_ms":21}

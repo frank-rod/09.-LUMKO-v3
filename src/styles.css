@@ -652,34 +652,35 @@ h2 strong {
   content: "->";
 }
 
+.portfolio-mark {
+  width: clamp(96px, 16vw, 200px);
+  height: auto;
+  justify-self: end;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 30px rgba(98, 188, 179, 0.35));
+}
+
 .portfolio-tabs {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 6px;
   margin-top: 28px;
   padding: 6px;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 999px;
+  border-radius: 22px;
   background: rgba(255, 255, 255, 0.04);
-  width: fit-content;
-  max-width: 100%;
-  overflow-x: auto;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-}
-
-.portfolio-tabs::-webkit-scrollbar {
-  display: none;
 }
 
 .portfolio-tab {
   flex-shrink: 0;
-  padding: 10px 18px;
+  padding: 8px 14px;
   border: 0;
   border-radius: 999px;
   background: transparent;
   color: rgba(255, 255, 255, 0.66);
   font-weight: 700;
-  font-size: 0.92rem;
+  font-size: 0.85rem;
   white-space: nowrap;
   cursor: pointer;
   transition: background 180ms ease, color 180ms ease, transform 180ms ease;
@@ -693,6 +694,19 @@ h2 strong {
   background: var(--mint-strong);
   color: var(--white);
   box-shadow: 0 8px 22px rgba(34, 184, 173, 0.28);
+}
+
+@media (min-width: 760px) {
+  .portfolio-tabs {
+    flex-wrap: nowrap;
+    width: fit-content;
+    border-radius: 999px;
+  }
+
+  .portfolio-tab {
+    padding: 10px 18px;
+    font-size: 0.92rem;
+  }
 }
 
 .carousel {

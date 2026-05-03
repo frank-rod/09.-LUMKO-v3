@@ -174,6 +174,47 @@ if (carousel) {
   startAutoplay();
 }
 
+const packagesNav = document.querySelector("[data-packages-nav]");
+const packagesCanvas = document.querySelector("[data-packages-canvas]");
+
+if (packagesNav && packagesCanvas) {
+  const navItems = Array.from(packagesNav.querySelectorAll(".packages-nav-item"));
+  const capsules = Array.from(packagesCanvas.querySelectorAll(".packages-capsule"));
+
+  const showPackage = (key) => {
+    navItems.forEach((item) => {
+      const isActive = item.dataset.package === key;
+      item.classList.toggle("active", isActive);
+      item.setAttribute("aria-selected", String(isActive));
+    });
+    capsules.forEach((capsule) => {
+      capsule.classList.toggle("active", capsule.dataset.packageContent === key);
+    });
+  };
+
+  navItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      const key = item.dataset.package;
+      if (key) showPackage(key);
+    });
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", (event) => {
+      const href = anchor.getAttribute("href") || "";
+      const id = href.slice(1);
+      const target = navItems.find((item) => item.dataset.package === id);
+      if (target) {
+        event.preventDefault();
+        showPackage(id);
+        document
+          .getElementById("paquetes")
+          ?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  });
+}
+
 const contactForm = document.querySelector("[data-contact-form]");
 
 if (contactForm) {

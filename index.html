@@ -101,78 +101,134 @@
           </header>
         </div>
 
-        <div class="container cards-grid">
-          <article class="price-card reveal" id="personal">
-            <p class="card-label">Personal</p>
-            <h3>Ideal para emprendedores o profesionales.</h3>
-            <ul>
-              <li>Diseño a medida</li>
-              <li>Sitio de una página</li>
-              <li>Formulario de contacto</li>
-              <li>Entrega en 3 días</li>
-            </ul>
-            <div class="price">$6,000 <span>MXN</span></div>
-            <p class="delivery">Entrega en 3 días naturales</p>
-            <a class="card-button" href="#contacto">Conocer más</a>
-          </article>
+        <div class="container packages-stage reveal">
+          <nav class="packages-nav" role="tablist" aria-label="Paquetes disponibles" data-packages-nav>
+            <button class="packages-nav-item" type="button" role="tab" aria-selected="false" data-package="personal">
+              <span class="packages-nav-title">Personal</span>
+              <span class="packages-nav-arrow" aria-hidden="true"></span>
+            </button>
+            <button class="packages-nav-item active" type="button" role="tab" aria-selected="true" data-package="business">
+              <span class="packages-nav-flag">Más popular</span>
+              <span class="packages-nav-title">Business Web</span>
+              <span class="packages-nav-arrow" aria-hidden="true"></span>
+            </button>
+            <button class="packages-nav-item" type="button" role="tab" aria-selected="false" data-package="restaurante">
+              <span class="packages-nav-title">Restaurante</span>
+              <span class="packages-nav-arrow" aria-hidden="true"></span>
+            </button>
+            <button class="packages-nav-item" type="button" role="tab" aria-selected="false" data-package="eventos">
+              <span class="packages-nav-title">Eventos</span>
+              <span class="packages-nav-arrow" aria-hidden="true"></span>
+            </button>
+            <button class="packages-nav-item" type="button" role="tab" aria-selected="false" data-package="ecommerce">
+              <span class="packages-nav-title">E-commerce</span>
+              <span class="packages-nav-arrow" aria-hidden="true"></span>
+            </button>
+          </nav>
 
-          <article class="price-card featured reveal" id="business">
-            <p class="best-badge">Más popular</p>
-            <p class="card-label">Business Web</p>
-            <h3>Para marcas y empresas que necesitan crecer.</h3>
-            <ul>
-              <li>Diseño a medida</li>
-              <li>Hasta 5 secciones</li>
-              <li>Optimización básica</li>
-              <li>Entrega en 3 días</li>
-            </ul>
-            <div class="price">$9,000 <span>MXN</span></div>
-            <p class="delivery">Entrega en 3 días naturales</p>
-            <a class="card-button" href="#contacto">Conocer más</a>
-          </article>
+          <div class="packages-stage-canvas" data-packages-canvas>
+            <article class="packages-capsule" data-package-content="personal" id="personal" role="tabpanel" aria-label="Paquete Personal">
+              <img class="packages-capsule-bg" src="assets/services/personal.png" alt="" loading="lazy" />
+              <div class="packages-capsule-content">
+                <p class="packages-capsule-label">Personal</p>
+                <h3>Ideal para emprendedores o profesionales.</h3>
+                <p class="packages-capsule-desc">Una página enfocada y rápida que comunica quién eres y lo que ofreces.</p>
+                <ul class="packages-capsule-features">
+                  <li>Diseño a medida</li>
+                  <li>Sitio de una página</li>
+                  <li>Formulario de contacto</li>
+                  <li>Entrega en 3 días</li>
+                </ul>
+                <div class="packages-capsule-meta">
+                  <div class="packages-capsule-price">$6,000 <span>MXN</span></div>
+                  <p class="packages-capsule-delivery">Entrega en 3 días naturales</p>
+                </div>
+                <a class="button button-primary" href="#contacto">Cotizar Personal</a>
+              </div>
+            </article>
 
-          <article class="price-card reveal" id="restaurante">
-            <p class="card-label">Restaurante</p>
-            <h3>Para menús, reservas y una experiencia digital.</h3>
-            <ul>
-              <li>Menú digital</li>
-              <li>Galería de platillos</li>
-              <li>Mapa de ubicación</li>
-              <li>Entrega en 3 días</li>
-            </ul>
-            <div class="price">$6,000 <span>MXN</span></div>
-            <p class="delivery">Entrega en 3 días naturales</p>
-            <a class="card-button" href="#contacto">Conocer más</a>
-          </article>
+            <article class="packages-capsule active" data-package-content="business" id="business" role="tabpanel" aria-label="Paquete Business Web">
+              <img class="packages-capsule-bg" src="assets/services/business.png" alt="" loading="lazy" />
+              <div class="packages-capsule-content">
+                <span class="packages-capsule-badge">Más popular</span>
+                <p class="packages-capsule-label">Business Web</p>
+                <h3>Para marcas y empresas que necesitan crecer.</h3>
+                <p class="packages-capsule-desc">Un sitio multi-sección pensado para escalar tu marca y convertir visitas.</p>
+                <ul class="packages-capsule-features">
+                  <li>Diseño a medida</li>
+                  <li>Hasta 5 secciones</li>
+                  <li>Optimización básica</li>
+                  <li>Entrega en 3 días</li>
+                </ul>
+                <div class="packages-capsule-meta">
+                  <div class="packages-capsule-price">$9,000 <span>MXN</span></div>
+                  <p class="packages-capsule-delivery">Entrega en 3 días naturales</p>
+                </div>
+                <a class="button button-primary" href="#contacto">Cotizar Business Web</a>
+              </div>
+            </article>
 
-          <article class="price-card reveal" id="eventos">
-            <p class="card-label">Eventos</p>
-            <h3>Para bodas, congresos, fiestas y más.</h3>
-            <ul>
-              <li>Cuenta regresiva</li>
-              <li>Galería de fotos</li>
-              <li>Información clave</li>
-              <li>Entrega en 3 días</li>
-            </ul>
-            <div class="price">$5,000 <span>MXN</span></div>
-            <p class="delivery">Entrega en 3 días naturales</p>
-            <a class="card-button" href="#contacto">Conocer más</a>
-          </article>
+            <article class="packages-capsule" data-package-content="restaurante" id="restaurante" role="tabpanel" aria-label="Paquete Restaurante">
+              <img class="packages-capsule-bg" src="assets/services/restaurante.png" alt="" loading="lazy" />
+              <div class="packages-capsule-content">
+                <p class="packages-capsule-label">Restaurante</p>
+                <h3>Para menús, reservas y una experiencia digital.</h3>
+                <p class="packages-capsule-desc">Para que tu carta y tu vibe lleguen al cliente antes de que abra la puerta.</p>
+                <ul class="packages-capsule-features">
+                  <li>Menú digital</li>
+                  <li>Galería de platillos</li>
+                  <li>Mapa de ubicación</li>
+                  <li>Entrega en 3 días</li>
+                </ul>
+                <div class="packages-capsule-meta">
+                  <div class="packages-capsule-price">$6,000 <span>MXN</span></div>
+                  <p class="packages-capsule-delivery">Entrega en 3 días naturales</p>
+                </div>
+                <a class="button button-primary" href="#contacto">Cotizar Restaurante</a>
+              </div>
+            </article>
 
-          <article class="price-card reveal" id="ecommerce">
-            <p class="card-label">E-commerce</p>
-            <h3>Para vender en línea con todo lo necesario.</h3>
-            <ul>
-              <li>Tienda en línea completa</li>
-              <li>Pasarela de pagos</li>
-              <li>Gestión de inventario</li>
-              <li>Carrito de compras</li>
-              <li>Panel de administración</li>
-            </ul>
-            <div class="price">$19,000 <span>MXN</span></div>
-            <p class="delivery">Entrega en 10 días hábiles</p>
-            <a class="card-button" href="#contacto">Conocer más</a>
-          </article>
+            <article class="packages-capsule" data-package-content="eventos" id="eventos" role="tabpanel" aria-label="Paquete Eventos">
+              <img class="packages-capsule-bg" src="assets/services/eventos.png" alt="" loading="lazy" />
+              <div class="packages-capsule-content">
+                <p class="packages-capsule-label">Eventos</p>
+                <h3>Para bodas, congresos, fiestas y más.</h3>
+                <p class="packages-capsule-desc">Una landing especial con toda la información que tus invitados necesitan.</p>
+                <ul class="packages-capsule-features">
+                  <li>Cuenta regresiva</li>
+                  <li>Galería de fotos</li>
+                  <li>Información clave</li>
+                  <li>Entrega en 3 días</li>
+                </ul>
+                <div class="packages-capsule-meta">
+                  <div class="packages-capsule-price">$5,000 <span>MXN</span></div>
+                  <p class="packages-capsule-delivery">Entrega en 3 días naturales</p>
+                </div>
+                <a class="button button-primary" href="#contacto">Cotizar Eventos</a>
+              </div>
+            </article>
+
+            <article class="packages-capsule" data-package-content="ecommerce" id="ecommerce" role="tabpanel" aria-label="Paquete E-commerce">
+              <img class="packages-capsule-bg" src="assets/services/ecommerce.png" alt="" loading="lazy" />
+              <div class="packages-capsule-content">
+                <p class="packages-capsule-label">E-commerce</p>
+                <h3>Para vender en línea con todo lo necesario.</h3>
+                <p class="packages-capsule-desc">Una tienda completa, lista para cobrar, gestionar inventario y crecer.</p>
+                <ul class="packages-capsule-features">
+                  <li>Tienda en línea completa</li>
+                  <li>Pasarela de pagos</li>
+                  <li>Gestión de inventario</li>
+                  <li>Carrito de compras</li>
+                  <li>Panel de administración</li>
+                </ul>
+                <div class="packages-capsule-meta">
+                  <div class="packages-capsule-price">$19,000 <span>MXN</span></div>
+                  <p class="packages-capsule-delivery">Entrega en 10 días hábiles</p>
+                </div>
+                <a class="button button-primary" href="#contacto">Cotizar E-commerce</a>
+              </div>
+            </article>
+          </div>
         </div>
 
         <p class="includes container">Todos los paquetes incluyen Dominio + Hosting + SSL básico.</p>

@@ -206,6 +206,56 @@ JOBS = [
         ),
     },
     {
+        "name": "assets/services/personal.png",
+        "size": "1536x1024",
+        "prompt": (
+            "Premium editorial wide flat-lay photograph evoking an intimate personal creative workspace — NO laptop, NO computer. "
+            "On the right portion of the frame, beautifully styled personal items on a warm cream linen surface: an open leather-bound journal with handwritten-style ink swirls (no readable text), a slim matte fountain pen resting beside it, a single ceramic cappuccino mug with light steam, a small printed mood-board card with subtle teal (#22b8ad) and soft mint (#62bcb3) abstract geometric shapes, a folded pair of round acetate glasses, a single dried eucalyptus stem. "
+            "Wide cinematic 3:2 composition shot from slightly above, very generous negative space on the LEFT TWO THIRDS of the frame for large white headline typography overlay, warm cream background fading into a soft dark vignette on the left so white text reads clearly, soft natural window light from the right with long gentle shadows, shallow elegant depth of field, no people, no logos, no readable text, no brand names, no laptops or screens or phones, magazine lifestyle photography aesthetic, photographic realism. "
+            "Intimate, calm, breathable, premium feel."
+        ),
+    },
+    {
+        "name": "assets/services/business.png",
+        "size": "1536x1024",
+        "prompt": (
+            "Premium editorial wide architectural interior photograph evoking a sleek modern business / corporate environment — NO laptop, NO computer, NO desk gadgets. "
+            "On the right portion of the frame, the corner of a minimalist contemporary office space: a single curved cream leather lounge chair facing tall floor-to-ceiling windows with soft natural sunlight streaming in, a slim brushed metal floor lamp, a small abstract sculptural art piece in soft mint (#62bcb3) and deep teal (#22b8ad) on a low side console, polished travertine floor. "
+            "Wide cinematic 3:2 composition, very generous negative space on the LEFT TWO THIRDS of the frame for large white headline typography overlay, warm cream / sand-colored walls fading into a soft dark vignette on the left so white text reads clearly, soft late-afternoon ambient light, shallow elegant depth of field, no people, no readable text, no logos, no signage, no brand names, magazine architectural / interior photography aesthetic, photographic realism. "
+            "Sophisticated, calm, professional, premium feel."
+        ),
+    },
+    {
+        "name": "assets/services/restaurante.png",
+        "size": "1536x1024",
+        "prompt": (
+            "Premium editorial wide photograph of an elegant boutique restaurant interior — NO laptop, NO computer, NO menus visible. "
+            "On the right portion of the frame, a single beautifully styled empty dining table for two: pristine ivory linen tablecloth, two matte cream ceramic plates with subtle teal (#22b8ad) hand-painted detail, two folded linen napkins held by slim brass rings, two slender wine glasses, a single tall ivory taper candle softly lit, a low arrangement of soft mint (#62bcb3) eucalyptus and small white flowers. The defocused background shows warm wooden chairs and softly glowing pendant lights creating warm bokeh. "
+            "Wide cinematic 3:2 composition, very generous negative space on the LEFT TWO THIRDS of the frame for large white headline typography overlay, warm cream and amber tones fading into a soft dark vignette on the left so white text reads clearly, intimate warm restaurant ambient lighting, shallow elegant depth of field, no people, no readable text, no logos, no signs, magazine hospitality / fine-dining photography aesthetic, photographic realism. "
+            "Elegant, refined, premium feel."
+        ),
+    },
+    {
+        "name": "assets/services/eventos.png",
+        "size": "1536x1024",
+        "prompt": (
+            "Premium editorial wide photograph of an elegant event venue, soft romantic ambience — NO laptop, NO computer, NO clutter. "
+            "On the right portion of the frame, a section of a beautifully styled banquet — a long ivory linen runner stretching diagonally toward the background, low lush arrangements of soft mint (#62bcb3) eucalyptus and pale cream-colored garden roses with subtle teal (#22b8ad) accent ribbons, three tall slim ivory taper candles softly lit, polished gold cutlery glinting. The defocused background shows warm bokeh of overhead string lights and a gauzy ivory drapery, suggesting a wedding or upscale celebration. "
+            "Wide cinematic 3:2 composition, very generous negative space on the LEFT TWO THIRDS of the frame for large white headline typography overlay, warm cream and golden tones fading into a soft dark vignette on the left so white text reads clearly, romantic warm soft lighting with abundant subtle bokeh, shallow elegant depth of field, no people, no readable text, no logos, no signage, no balloons, no confetti, magazine wedding / events photography aesthetic, photographic realism. "
+            "Elegant, romantic, festive but sophisticated, premium feel."
+        ),
+    },
+    {
+        "name": "assets/services/ecommerce.png",
+        "size": "1536x1024",
+        "prompt": (
+            "Premium editorial wide photograph of a small premium online boutique packaging scene — NO laptop, NO computer, NO screens. "
+            "On the right portion of the frame, a beautifully styled product fulfillment vignette on a warm cream studio surface: a stack of two unbranded craft-paper kraft shipping boxes tied with soft mint (#62bcb3) silk ribbons, a folded cream cotton garment partially visible inside an open box, a folded kraft paper shopping bag with a deep teal (#22b8ad) handle, a small printed cream thank-you card with a subtle teal abstract geometric mark (no readable text), a roll of kraft paper, scattered loose bits of crumpled tissue paper. "
+            "Wide cinematic 3:2 composition shot slightly from above at 35-degree angle, very generous negative space on the LEFT TWO THIRDS of the frame for large white headline typography overlay, warm cream background fading into a soft dark vignette on the left so white text reads clearly, soft natural studio lighting with gentle long shadows, shallow elegant depth of field, no people, no logos, no readable text, no brand names, magazine e-commerce / lifestyle still-life photography aesthetic, photographic realism. "
+            "Calm, refined, premium feel."
+        ),
+    },
+    {
         "name": "assets/hero/homebanner-mobile.png",
         "size": "1024x1536",
         "prompt": (

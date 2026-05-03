@@ -77,14 +77,32 @@ def request_json(url: str, api_key: str, payload: dict[str, object] | None = Non
         raise RuntimeError(f"HTTP {e.code} from {url}: {body[:500]}") from e
 
 
-def request_defapi_image(api_key: str, prompt: str, size: str, quality: str = "high") -> bytes:
-    payload = {
+def encode_image_data_url(path: Path) -> str:
+    suffix = path.suffix.lower().lstrip(".")
+    mime = "image/jpeg" if suffix in ("jpg", "jpeg") else f"image/{suffix or 'png'}"
+    return f"data:{mime};base64,{base64.b64encode(path.read_bytes()).decode('ascii')}"
+
+
+def request_defapi_image(
+    api_key: str,
+    prompt: str,
+    size: str,
+    quality: str = "high",
+    reference: Path | None = None,
+) -> bytes:
+    payload: dict[str, object] = {
         "model": "openai/gpt-image-2",
         "prompt": prompt,
         "size": size,
         "quality": quality,
     }
-    created = request_json("https://api.defapi.org/api/gpt-image/gen", api_key, payload)
+    endpoint = "https://api.defapi.org/api/gpt-image/gen"
+    if reference is not None:
+        data_url = encode_image_data_url(reference)
+        payload["image"] = data_url
+        # DefAPI typically routes edits through a different endpoint
+        endpoint = "https://api.defapi.org/api/gpt-image/edit"
+    created = request_json(endpoint, api_key, payload)
     task_id = (created.get("data") or {}).get("task_id") if isinstance(created.get("data"), dict) else None
     if not task_id:
         raise RuntimeError(f"unexpected DefAPI create response: {created}")
@@ -147,9 +165,18 @@ def resolve_out_path(out_name: str) -> Path:
     return OUT / out_name
 
 
-def generate_defapi(api_key: str, prompt: str, out_name: str, size: str) -> Path:
-    print(f"[{out_name}] requesting DefAPI openai/gpt-image-2 {size} ...", flush=True)
-    data = request_defapi_image(api_key, prompt, size)
+def generate_defapi(
+    api_key: str,
+    prompt: str,
+    out_name: str,
+    size: str,
+    reference: Path | None = None,
+) -> Path:
+    label = f"DefAPI openai/gpt-image-2 {size}"
+    if reference is not None:
+        label += f" ref={reference.name}"
+    print(f"[{out_name}] requesting {label} ...", flush=True)
+    data = request_defapi_image(api_key, prompt, size, reference=reference)
     path = resolve_out_path(out_name)
     path.write_bytes(data)
     print(f"[{out_name}] saved ({len(data)//1024} KB) via DefAPI openai/gpt-image-2")
@@ -176,7 +203,13 @@ def generate_openai(api_key: str, prompt: str, out_name: str, size: str) -> Path
     raise RuntimeError(f"all models failed for {out_name}: {last_err}")
 
 
-def generate(env: dict[str, str], prompt: str, out_name: str, size: str = "1536x1024") -> Path:
+def generate(
+    env: dict[str, str],
+    prompt: str,
+    out_name: str,
+    size: str = "1536x1024",
+    reference: Path | None = None,
+) -> Path:
     defapi_key = (
         env.get("DEFAPI")
         or env.get("DEFAPI_API_KEY")
@@ -184,11 +217,13 @@ def generate(env: dict[str, str], prompt: str, out_name: str, size: str = "1536x
         or env.get("DefAPIkey")
     )
     if defapi_key:
-        return generate_defapi(defapi_key, prompt, out_name, size)
+        return generate_defapi(defapi_key, prompt, out_name, size, reference=reference)
 
     openai_key = env.get("OPENAI_API_KEY")
     if not openai_key:
         sys.exit("Set DEFAPI, DEFAPI_API_KEY, DEFAPI_KEY, or OPENAI_API_KEY in .env")
+    if reference is not None:
+        print(f"[{out_name}] WARN: OpenAI fallback ignores reference image", flush=True)
     return generate_openai(openai_key, prompt, out_name, size)
 
 
@@ -256,6 +291,52 @@ JOBS = [
         ),
     },
     {
+        "name": "ads/ad-3dias.png",
+        "size": "1024x1024",
+        "prompt": (
+            "Premium editorial square 1:1 advertisement composition for Meta Feed. "
+            "BACKGROUND: a beautifully styled flat-lay on a warm cream / off-white linen-textured surface, occupying the RIGHT HALF of the frame: an open minimalist weekly planner with subtle mint ink marks, a slim matte black fountain pen resting on top, a small ivory ceramic mug, a single dried eucalyptus stem, and a small printed card with clean abstract deep teal (#22b8ad) and soft mint (#62bcb3) geometric shapes resting on the planner. "
+            "TEXT OVERLAY: in the LEFT HALF of the frame, three lines of clean modern bold sans-serif typography rendered crisply, perfectly spelled, in deep teal (#22b8ad) color: "
+            "First line, very large bold: \"3 DÍAS.\" "
+            "Second line, smaller medium weight in dark ink color (#07131d): \"Tu sitio web a medida.\" "
+            "Third line, very small uppercase tracked, in muted gray: \"LUMKO STUDIO\" "
+            "Layout: text aligned left, vertically centered in the left half. Spelling must be exact. "
+            "Soft natural window light from the right, shallow elegant depth of field, no people, no other readable text or logos in the scene, magazine lifestyle photography aesthetic, photographic realism. "
+            "Calm, refined, premium ad feel."
+        ),
+    },
+    {
+        "name": "ads/ad-portafolio.png",
+        "size": "1024x1280",
+        "prompt": (
+            "Premium editorial 4:5 vertical advertisement composition for Meta Feed. "
+            "BACKGROUND: a beautifully styled flat-lay on a warm cream studio surface, occupying the BOTTOM TWO THIRDS of the frame: six small printed business-card-sized website mockup cards fanned out diagonally and slightly overlapping — each shows a clean different abstract website layout using only deep teal (#22b8ad) and soft mint (#62bcb3) shapes on near-white interfaces (a circular profile, a product grid, a menu list, a countdown, a gallery grid, a hero composition). Beside the stack: a matte ivory ceramic mug, a small dried eucalyptus sprig, a slim matte black pen, a folded ivory linen napkin. "
+            "TEXT OVERLAY: in the TOP THIRD of the frame, three lines of clean modern bold sans-serif typography rendered crisply, perfectly spelled: "
+            "First line, very large bold uppercase in deep teal (#22b8ad): \"DISEÑO PREMIUM\" "
+            "Second line, medium weight in dark ink color (#07131d): \"Desde $5,000 MXN\" "
+            "Third line, very small uppercase tracked, in muted gray: \"LUMKO STUDIO\" "
+            "Layout: text centered horizontally, top third of frame. Spelling must be exact. "
+            "Soft natural directional light, shallow elegant depth of field, no people, no other readable text or logos in the scene, magazine portfolio photography aesthetic, photographic realism. "
+            "Sophisticated, premium, editorial ad feel."
+        ),
+    },
+    {
+        "name": "ads/ad-stories.png",
+        "size": "9:16",
+        "prompt": (
+            "Premium editorial 9:16 vertical advertisement composition for Meta Stories / Reels. "
+            "BACKGROUND: a beautifully styled flat-lay on a warm cream linen-textured surface, occupying the LOWER THIRD of the frame: a sleek modern matte black smartphone laying front-down at a slight angle (no visible screen), a small printed card with a subtle deep teal (#22b8ad) and soft mint (#62bcb3) abstract geometric shape, a single dried eucalyptus stem curving gracefully, a small folded craft-paper bag with a soft mint silk ribbon. "
+            "TEXT OVERLAY: in the UPPER TWO THIRDS of the frame, three lines of clean modern bold sans-serif typography rendered crisply, perfectly spelled: "
+            "First line, very large bold uppercase in deep teal (#22b8ad): \"TU MARCA\" "
+            "Second line, very large bold uppercase in deep teal (#22b8ad): \"EN PANTALLA.\" "
+            "Third line below, smaller medium weight in dark ink color (#07131d): \"Sitios web en 3 días.\" "
+            "Bottom of the frame, just above the flat-lay, a small pill-shaped button filled with deep teal (#22b8ad) containing white uppercase bold sans-serif text: \"COTIZAR\" "
+            "Layout: text aligned left, top portion of frame. Spelling must be exact. "
+            "Soft natural directional window light, shallow elegant depth of field, no people, no other readable text or logos in the scene, magazine lifestyle photography aesthetic, photographic realism. "
+            "Refined, modern, premium ad feel."
+        ),
+    },
+    {
         "name": "assets/hero/homebanner-mobile.png",
         "size": "1024x1536",
         "prompt": (
@@ -308,7 +389,9 @@ def main() -> int:
         if filters and not any(f in job["name"].lower() for f in filters):
             continue
         try:
-            generate(env, job["prompt"], job["name"], job["size"])
+            ref = job.get("reference")
+            ref_path = ROOT / ref if ref else None
+            generate(env, job["prompt"], job["name"], job["size"], reference=ref_path)
         except Exception as e:  # noqa: BLE001
             print(f"FAIL {job['name']}: {e}")
             failures += 1

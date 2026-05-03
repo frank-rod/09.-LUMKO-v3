@@ -2,7 +2,17 @@
   "permissions": {
     "allow": [
       "Bash(python3 tools/generate_images.py services/)",
-      "Bash(grep -iE \"\\\\.\\(png|jpg|jpeg|webp\\)$\")"
+      "Bash(grep -iE \"\\\\.\\(png|jpg|jpeg|webp\\)$\")",
+      "Bash(python3 tools/generate_images.py ads/)",
+      "Bash(python3 tools/generate_images.py 3dias-v2)",
+      "WebFetch(domain:defapi.org)",
+      "WebFetch(domain:api.defapi.org)",
+      "Bash(curl -s \"https://api.defapi.org/api/gpt-image\")",
+      "Bash(curl -s \"https://api.defapi.org/api\")",
+      "Read(//tmp/defapi_test/**)",
+      "Read(//private/tmp/defapi_test/**)",
+      "Bash(python3 -c ' *)",
+      "Read(//Users/frank/Desktop/Webs/10. LUMKO v4/**)"
     ]
   }
 }

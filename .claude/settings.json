@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(python3 tools/generate_images.py services/)"
+      "Bash(python3 tools/generate_images.py services/)",
+      "Bash(grep -iE \"\\\\.\\(png|jpg|jpeg|webp\\)$\")"
     ]
   }
 }

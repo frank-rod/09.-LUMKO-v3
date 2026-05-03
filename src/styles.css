@@ -840,7 +840,7 @@ h2 strong {
   box-shadow: 0 8px 22px rgba(34, 184, 173, 0.28);
 }
 
-@media (min-width: 760px) {
+@media (min-width: 920px) {
   .portfolio-tabs {
     flex-wrap: nowrap;
     width: fit-content;

@@ -55,9 +55,19 @@ if (carousel) {
   const previousButton = carousel.querySelector("[data-prev]");
   const nextButton = carousel.querySelector("[data-next]");
   const dotsContainer = carousel.querySelector("[data-dots]");
+  const tabsContainer = document.querySelector("[data-tabs]");
+  const tabs = tabsContainer
+    ? Array.from(tabsContainer.querySelectorAll(".portfolio-tab"))
+    : [];
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let index = 0;
   let autoplayId;
+  let currentFilter = "all";
+
+  const visibleSlides = () =>
+    slides.filter(
+      (slide) => currentFilter === "all" || slide.dataset.category === currentFilter
+    );
 
   const slidesPerView = () => {
     if (window.innerWidth >= 900) return 3;
@@ -65,13 +75,22 @@ if (carousel) {
     return 1;
   };
 
-  const maxIndex = () => Math.max(0, slides.length - slidesPerView());
+  const maxIndex = () => Math.max(0, visibleSlides().length - slidesPerView());
+
+  const updateNavVisibility = () => {
+    const showNav = maxIndex() > 0;
+    [previousButton, nextButton].forEach((button) => {
+      if (button) button.style.visibility = showNav ? "" : "hidden";
+    });
+  };
 
   const updateCarousel = () => {
-    if (!track || !slides.length) return;
+    if (!track) return;
+    const visible = visibleSlides();
+    if (!visible.length) return;
 
     index = Math.min(index, maxIndex());
-    const slide = slides[0];
+    const slide = visible[0];
     const gap = Number.parseFloat(getComputedStyle(track).gap) || 0;
     const offset = index * (slide.getBoundingClientRect().width + gap);
     track.style.transform = `translateX(-${offset}px)`;
@@ -80,10 +99,13 @@ if (carousel) {
       dot.classList.toggle("active", dotIndex === index);
       dot.setAttribute("aria-current", dotIndex === index ? "true" : "false");
     });
+
+    updateNavVisibility();
   };
 
   const goTo = (nextIndex) => {
-    index = nextIndex < 0 ? maxIndex() : nextIndex > maxIndex() ? 0 : nextIndex;
+    const max = maxIndex();
+    index = nextIndex < 0 ? max : nextIndex > max ? 0 : nextIndex;
     updateCarousel();
   };
 
@@ -91,7 +113,10 @@ if (carousel) {
     if (!dotsContainer) return;
     dotsContainer.innerHTML = "";
 
-    for (let dotIndex = 0; dotIndex <= maxIndex(); dotIndex += 1) {
+    const max = maxIndex();
+    if (max <= 0) return;
+
+    for (let dotIndex = 0; dotIndex <= max; dotIndex += 1) {
       const dot = document.createElement("button");
       dot.type = "button";
       dot.setAttribute("aria-label", `Ver proyecto ${dotIndex + 1}`);
@@ -100,14 +125,39 @@ if (carousel) {
     }
   };
 
+  const applyFilter = (filter) => {
+    currentFilter = filter;
+    slides.forEach((slide) => {
+      const match = filter === "all" || slide.dataset.category === filter;
+      slide.style.display = match ? "" : "none";
+    });
+    index = 0;
+    buildDots();
+    updateCarousel();
+    if (autoplayId) startAutoplay();
+  };
+
   const startAutoplay = () => {
     if (prefersReducedMotion) return;
     window.clearInterval(autoplayId);
+    if (maxIndex() <= 0) return;
     autoplayId = window.setInterval(() => goTo(index + 1), 4200);
   };
 
   previousButton?.addEventListener("click", () => goTo(index - 1));
   nextButton?.addEventListener("click", () => goTo(index + 1));
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const filter = tab.dataset.filter || "all";
+      tabs.forEach((other) => {
+        const isActive = other === tab;
+        other.classList.toggle("active", isActive);
+        other.setAttribute("aria-selected", String(isActive));
+      });
+      applyFilter(filter);
+    });
+  });
 
   carousel.addEventListener("mouseenter", () => window.clearInterval(autoplayId));
   carousel.addEventListener("mouseleave", startAutoplay);
@@ -122,4 +172,40 @@ if (carousel) {
   buildDots();
   updateCarousel();
   startAutoplay();
+}
+
+const contactForm = document.querySelector("[data-contact-form]");
+
+if (contactForm) {
+  contactForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    if (!contactForm.checkValidity()) {
+      contactForm.reportValidity();
+      return;
+    }
+
+    const data = new FormData(contactForm);
+    const get = (key) => String(data.get(key) || "").trim();
+
+    const lines = [
+      "Hola LUMKO, me gustaría cotizar un proyecto.",
+      "",
+      `*Nombre:* ${get("nombre")}`,
+      `*Teléfono:* ${get("telefono")}`,
+    ];
+
+    if (get("email")) lines.push(`*Email:* ${get("email")}`);
+    lines.push(`*Producto de interés:* ${get("paquete")}`);
+    lines.push(`*Presupuesto:* ${get("presupuesto")}`);
+    if (get("plazo")) lines.push(`*Plazo:* ${get("plazo")}`);
+    if (get("mensaje")) {
+      lines.push("");
+      lines.push(`*Detalles:* ${get("mensaje")}`);
+    }
+
+    const text = encodeURIComponent(lines.join("\n"));
+    const phone = (contactForm.dataset.whatsapp || "").replace(/\D/g, "");
+    window.open(`https://wa.me/${phone}?text=${text}`, "_blank", "noopener");
+  });
 }

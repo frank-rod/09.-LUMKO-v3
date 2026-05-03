@@ -158,6 +158,21 @@
             <p class="delivery">Entrega en 3 días naturales</p>
             <a class="card-button" href="#contacto">Conocer más</a>
           </article>
+
+          <article class="price-card reveal" id="ecommerce">
+            <p class="card-label">E-commerce</p>
+            <h3>Para vender en línea con todo lo necesario.</h3>
+            <ul>
+              <li>Tienda en línea completa</li>
+              <li>Pasarela de pagos</li>
+              <li>Gestión de inventario</li>
+              <li>Carrito de compras</li>
+              <li>Panel de administración</li>
+            </ul>
+            <div class="price">$19,000 <span>MXN</span></div>
+            <p class="delivery">Entrega en 10 días hábiles</p>
+            <a class="card-button" href="#contacto">Conocer más</a>
+          </article>
         </div>
 
         <p class="includes container">Todos los paquetes incluyen Dominio + Hosting + SSL básico.</p>
@@ -172,75 +187,61 @@
           <a href="#contacto">Ver portafolio</a>
         </div>
 
+        <div class="container portfolio-tabs reveal" role="tablist" aria-label="Filtrar por categoría" data-tabs>
+          <button class="portfolio-tab active" type="button" role="tab" aria-selected="true" data-filter="all">Todos</button>
+          <button class="portfolio-tab" type="button" role="tab" aria-selected="false" data-filter="Business">Business</button>
+          <button class="portfolio-tab" type="button" role="tab" aria-selected="false" data-filter="Personal">Personal</button>
+          <button class="portfolio-tab" type="button" role="tab" aria-selected="false" data-filter="Corporativo">Corporativo</button>
+          <button class="portfolio-tab" type="button" role="tab" aria-selected="false" data-filter="Real Estate">Real Estate</button>
+          <button class="portfolio-tab" type="button" role="tab" aria-selected="false" data-filter="Eventos">Eventos</button>
+          <button class="portfolio-tab" type="button" role="tab" aria-selected="false" data-filter="Restaurantes">Restaurantes</button>
+        </div>
+
         <div class="carousel container reveal" data-carousel>
           <button class="carousel-button prev" type="button" data-prev aria-label="Proyecto anterior">
             <span aria-hidden="true"></span>
           </button>
           <div class="carousel-viewport">
             <div class="carousel-track" data-track>
-              <article class="project-card">
-                <img src="images/cincodevenus.png" alt="Screenshot del sitio web Cinco de Venus" loading="lazy" />
-                <div><h3>Cinco de Venus</h3><p>E-commerce · Lifestyle</p></div>
-              </article>
-              <article class="project-card">
+              <article class="project-card" data-category="Business">
                 <img src="images/diabetex.png" alt="Screenshot del sitio web Diabetex" loading="lazy" />
-                <div><h3>Diabetex</h3><p>Salud · Landing</p></div>
+                <div><h3>Diabetex</h3><p>Business</p></div>
               </article>
-              <article class="project-card">
-                <img src="images/drasaratrevino.png" alt="Screenshot del sitio web Dra. Sara Trevino" loading="lazy" />
-                <div><h3>Dra. Sara Trevino</h3><p>Profesional · Medica</p></div>
-              </article>
-              <article class="project-card">
+              <article class="project-card" data-category="Business">
                 <img src="images/drbaes.png" alt="Screenshot del sitio web Dr. Baes" loading="lazy" />
-                <div><h3>Dr. Baes</h3><p>Profesional · Medica</p></div>
+                <div><h3>Dr. Baes</h3><p>Business</p></div>
               </article>
-              <article class="project-card">
-                <img src="images/khanfusion.png" alt="Screenshot del sitio web Khan Fusion" loading="lazy" />
-                <div><h3>Khan Fusion</h3><p>Restaurante · Menu</p></div>
-              </article>
-              <article class="project-card">
-                <img src="images/rsevents.png" alt="Screenshot del sitio web RS Events" loading="lazy" />
-                <div><h3>RS Events</h3><p>Eventos · Landing</p></div>
-              </article>
-              <article class="project-card">
+              <article class="project-card" data-category="Personal">
                 <img src="images/fjrod.png" alt="Screenshot del sitio web FJ Rod" loading="lazy" />
-                <div><h3>FJ Rod</h3><p>Marca · Web</p></div>
+                <div><h3>FJ Rod</h3><p>Personal</p></div>
               </article>
-              <article class="project-card">
-                <img src="images/frank.jpg" alt="Screenshot del sitio web Frank" loading="lazy" />
-                <div><h3>Frank</h3><p>Personal · Portafolio</p></div>
-              </article>
-              <article class="project-card">
-                <img src="images/linkedin.png" alt="Screenshot del proyecto LinkedIn" loading="lazy" />
-                <div><h3>LinkedIn</h3><p>Contenido · Profesional</p></div>
-              </article>
-              <article class="project-card">
-                <img src="images/nuevaportafolio.png" alt="Screenshot del nuevo portafolio" loading="lazy" />
-                <div><h3>Nuevo Portafolio</h3><p>Portfolio · Web</p></div>
-              </article>
-              <article class="project-card">
-                <img src="images/paquetesweb.png" alt="Screenshot del proyecto Paquetes Web" loading="lazy" />
-                <div><h3>Paquetes Web</h3><p>Landing · Servicios</p></div>
-              </article>
-              <article class="project-card">
-                <img src="images/prueba.png" alt="Screenshot del proyecto Prueba" loading="lazy" />
-                <div><h3>Prueba</h3><p>Concepto · Web</p></div>
-              </article>
-              <article class="project-card">
-                <img src="images/pruebaportafolio.jpg" alt="Screenshot del proyecto Prueba Portafolio" loading="lazy" />
-                <div><h3>Prueba Portafolio</h3><p>Portfolio · Web</p></div>
-              </article>
-              <article class="project-card">
-                <img src="images/santiago.jpg" alt="Screenshot del sitio web Santiago" loading="lazy" />
-                <div><h3>Santiago</h3><p>Personal · Marca</p></div>
-              </article>
-              <article class="project-card">
+              <article class="project-card" data-category="Personal">
                 <img src="images/scareaga.png" alt="Screenshot del sitio web S. Careaga" loading="lazy" />
-                <div><h3>S. Careaga</h3><p>Profesional · Web</p></div>
+                <div><h3>S. Careaga</h3><p>Personal</p></div>
               </article>
-              <article class="project-card">
+              <article class="project-card" data-category="Personal">
+                <img src="images/drasaratrevino.png" alt="Screenshot del sitio web Dra. Sara Treviño" loading="lazy" />
+                <div><h3>Dra. Sara Treviño</h3><p>Personal</p></div>
+              </article>
+              <article class="project-card" data-category="Corporativo">
+                <img src="images/blakecorporation.png" alt="Screenshot del sitio web Blake Corporation" loading="lazy" />
+                <div><h3>Blake Corporation</h3><p>Corporativo</p></div>
+              </article>
+              <article class="project-card" data-category="Corporativo">
                 <img src="images/tltlawfirm.png" alt="Screenshot del sitio web TLT Law Firm" loading="lazy" />
-                <div><h3>TLT Law Firm</h3><p>Legal · Web</p></div>
+                <div><h3>TLT Law Firm</h3><p>Corporativo</p></div>
+              </article>
+              <article class="project-card" data-category="Real Estate">
+                <img src="images/cincodevenus.png" alt="Screenshot del sitio web Cinco de Venus" loading="lazy" />
+                <div><h3>Cinco de Venus</h3><p>Real Estate</p></div>
+              </article>
+              <article class="project-card" data-category="Eventos">
+                <img src="images/rsevents.png" alt="Screenshot del sitio web RS Events" loading="lazy" />
+                <div><h3>RS Events</h3><p>Eventos</p></div>
+              </article>
+              <article class="project-card" data-category="Restaurantes">
+                <img src="images/khanfusion.png" alt="Screenshot del sitio web Khan Fusion" loading="lazy" />
+                <div><h3>Khan Fusion</h3><p>Restaurantes</p></div>
               </article>
             </div>
           </div>
@@ -252,24 +253,87 @@
       </section>
 
       <section class="cta container reveal" id="contacto">
-        <div>
+        <div class="cta-copy">
           <p class="kicker">Cotiza tu proyecto</p>
           <h2>¿Listo para que tu marca brille en línea?</h2>
-          <p>Cuéntanos tu necesidad y te ayudamos a crear la página ideal para lanzar tu sitio.</p>
+          <p>
+            Cuéntanos sobre tu proyecto y te respondemos en menos de 24 horas con
+            una propuesta clara, sin compromiso.
+          </p>
+          <div class="contact-card">
+            <a class="whatsapp" href="https://wa.me/" target="_blank" rel="noreferrer">WhatsApp directo</a>
+          </div>
         </div>
-        <div class="contact-card">
-          <a class="whatsapp" href="https://wa.me/" target="_blank" rel="noreferrer">WhatsApp</a>
-          <a href="mailto:hola@lumkostudio.com">hola@lumkostudio.com</a>
-          <span>Cancún, Quintana Roo</span>
-          <span>San Pedro Garza García, N.L.</span>
-        </div>
+
+        <form class="contact-form" data-contact-form data-whatsapp="" novalidate>
+          <div class="field">
+            <label for="cf-name">Nombre <span class="required" aria-hidden="true">*</span></label>
+            <input id="cf-name" name="nombre" type="text" required autocomplete="name" placeholder="Tu nombre" />
+          </div>
+
+          <div class="field">
+            <label for="cf-phone">Teléfono <span class="required" aria-hidden="true">*</span></label>
+            <input id="cf-phone" name="telefono" type="tel" required autocomplete="tel" placeholder="+52 ..." />
+          </div>
+
+          <div class="field">
+            <label for="cf-email">Email <span class="optional">(opcional)</span></label>
+            <input id="cf-email" name="email" type="email" autocomplete="email" placeholder="tu@correo.com" />
+          </div>
+
+          <div class="field">
+            <label for="cf-package">Producto de interés <span class="required" aria-hidden="true">*</span></label>
+            <select id="cf-package" name="paquete" required>
+              <option value="" disabled selected>Selecciona un paquete</option>
+              <option value="Personal — $6,000 MXN">Personal — $6,000 MXN</option>
+              <option value="Business Web — $9,000 MXN">Business Web — $9,000 MXN</option>
+              <option value="Restaurante — $6,000 MXN">Restaurante — $6,000 MXN</option>
+              <option value="Eventos — $5,000 MXN">Eventos — $5,000 MXN</option>
+              <option value="E-commerce — $19,000 MXN">E-commerce — $19,000 MXN</option>
+              <option value="Otro / no estoy seguro">Otro / no estoy seguro</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="cf-budget">Presupuesto estimado <span class="required" aria-hidden="true">*</span></label>
+            <select id="cf-budget" name="presupuesto" required>
+              <option value="" disabled selected>Elige un rango</option>
+              <option>Menos de $5,000 MXN</option>
+              <option>$5,000 – $10,000 MXN</option>
+              <option>$10,000 – $20,000 MXN</option>
+              <option>Más de $20,000 MXN</option>
+              <option>Aún no lo definimos</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="cf-timeline">¿Cuándo lo necesitas?</label>
+            <select id="cf-timeline" name="plazo">
+              <option value="" disabled selected>Plazo aproximado</option>
+              <option>Lo antes posible</option>
+              <option>En 1–2 semanas</option>
+              <option>En 1 mes</option>
+              <option>Sin prisa, explorando</option>
+            </select>
+          </div>
+
+          <div class="field field-full">
+            <label for="cf-message">Cuéntanos sobre tu proyecto <span class="optional">(opcional)</span></label>
+            <textarea id="cf-message" name="mensaje" rows="3" placeholder="Sector, referencias, links, lo que quieras compartir..."></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="button button-primary">Enviar por WhatsApp</button>
+            <p class="form-note">Te responderemos en menos de 24 horas.</p>
+          </div>
+        </form>
       </section>
     </main>
 
     <footer class="site-footer">
       <div class="container footer-grid">
-        <div>
-          <img src="logo/logolargoparafondososcuros.PNG" alt="LUMKO" />
+        <div class="footer-brand">
+          <img src="logo/isotipo.png" alt="LUMKO" class="footer-isotipo" />
           <p>Diseñamos sitios web modernos, estratégicos y enfocados en resultados.</p>
         </div>
         <nav aria-label="Enlaces rápidos">

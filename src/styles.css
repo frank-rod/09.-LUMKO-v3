@@ -916,17 +916,18 @@ h2 strong {
 .carousel-button {
   position: absolute;
   z-index: 2;
-  top: 45%;
-  display: none;
-  width: 50px;
-  height: 50px;
+  top: 50%;
+  display: grid;
+  width: 42px;
+  height: 42px;
   place-items: center;
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.92);
   cursor: pointer;
   transform: translateY(-50%);
   transition: background 180ms ease, transform 180ms ease;
+  box-shadow: 0 10px 24px rgba(3, 6, 9, 0.4);
 }
 
 .carousel-button:hover {
@@ -935,18 +936,18 @@ h2 strong {
 }
 
 .carousel-button span {
-  width: 14px;
-  height: 14px;
-  border-top: 3px solid var(--ink);
-  border-right: 3px solid var(--ink);
+  width: 11px;
+  height: 11px;
+  border-top: 2.5px solid var(--ink);
+  border-right: 2.5px solid var(--ink);
 }
 
 .carousel-button.prev {
-  left: -16px;
+  left: 10px;
 }
 
 .carousel-button.next {
-  right: -16px;
+  right: 10px;
 }
 
 .carousel-button.prev span {
@@ -1525,7 +1526,23 @@ h2 strong {
   }
 
   .carousel-button {
-    display: grid;
+    width: 50px;
+    height: 50px;
+  }
+
+  .carousel-button span {
+    width: 14px;
+    height: 14px;
+    border-top-width: 3px;
+    border-right-width: 3px;
+  }
+
+  .carousel-button.prev {
+    left: -16px;
+  }
+
+  .carousel-button.next {
+    right: -16px;
   }
 
   .project-card {

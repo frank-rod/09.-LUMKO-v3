@@ -164,6 +164,60 @@ if (carousel) {
   carousel.addEventListener("focusin", () => window.clearInterval(autoplayId));
   carousel.addEventListener("focusout", startAutoplay);
 
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchActive = false;
+  let touchMoved = false;
+  const SWIPE_THRESHOLD = 40;
+
+  carousel.addEventListener(
+    "touchstart",
+    (event) => {
+      const touch = event.changedTouches[0];
+      touchStartX = touch.screenX;
+      touchStartY = touch.screenY;
+      touchActive = true;
+      touchMoved = false;
+      window.clearInterval(autoplayId);
+    },
+    { passive: true }
+  );
+
+  carousel.addEventListener(
+    "touchmove",
+    (event) => {
+      if (!touchActive) return;
+      const touch = event.changedTouches[0];
+      const dx = Math.abs(touch.screenX - touchStartX);
+      const dy = Math.abs(touch.screenY - touchStartY);
+      if (dx > 8 || dy > 8) touchMoved = true;
+    },
+    { passive: true }
+  );
+
+  carousel.addEventListener("touchend", (event) => {
+    if (!touchActive) return;
+    touchActive = false;
+    const touch = event.changedTouches[0];
+    const dx = touch.screenX - touchStartX;
+    const dy = touch.screenY - touchStartY;
+    if (Math.abs(dx) > SWIPE_THRESHOLD && Math.abs(dx) > Math.abs(dy)) {
+      goTo(dx < 0 ? index + 1 : index - 1);
+    }
+    startAutoplay();
+  });
+
+  carousel.addEventListener(
+    "click",
+    (event) => {
+      if (touchMoved) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+    },
+    true
+  );
+
   window.addEventListener("resize", () => {
     buildDots();
     updateCarousel();
